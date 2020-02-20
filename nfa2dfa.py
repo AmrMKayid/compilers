@@ -5,7 +5,7 @@ from collections import namedtuple
 tfns = namedtuple('transition_fns', ['zeros', 'ones', 'eps'])
 ts = namedtuple('transition_state', ['zero', 'one'])
 
-int_ = (lambda list: [int(num) for num in list])
+int_ = (lambda list: [int(num) if num != '' else '' for num in list])
 tuples = (
     lambda list:
     [tuple(int_(transition_state.split(','))) for transition_state in list])
@@ -25,8 +25,6 @@ class NFA2DFA:
 
   def __init__(self, description: str = ""):
     self.alphabet = {0, 1}
-    self.initial_state = (0,)
-    self.current_state = self.initial_state
     self.desc = description.strip().split('#')
     self.accepted_states = set(int_(self.desc[-1].split(',')))
     self.transition_fns = tfns(
@@ -35,8 +33,10 @@ class NFA2DFA:
         eps=tuples(self.desc[2].split(';')),
     )
 
+    self.initial_state = self.current_state = self.eps_closure({0})
+
     self.processing_queue = [
-        self.eps_closure(self.current_state),
+        self.eps_closure({0}),
     ]
 
     self.transition_states = {}
@@ -130,12 +130,28 @@ class NFA2DFA:
 
 
 if __name__ == '__main__':
-  nfa2dfa = NFA2DFA("0,0;1,2;3,3#0,0;0,1;2,3;3,3#1,2#3")
+  print("First NFA2DFA")
+  nfa2dfa = NFA2DFA("0,0;0,1;1,3#1,2;2,4;4,4#0,1;3,4#3,4")
 
   strings_list = [
-      ''.join(random.choice("01")
-              for i in range(random.randint(1, 10)))
-      for j in range(10)
+      "0010",
+      "0111",
+      "1010",
+      "1111",
+      "0101",
+  ]
+  for string in strings_list:
+    print(nfa2dfa.run(string))
+
+  print("\n\nSecond NFA2DFA")
+  nfa2dfa = NFA2DFA("0,1;1,3;4,5;5,5#1,2;2,4;4,4#0,1;3,4#5")
+
+  strings_list = [
+      "1011",
+      "01100",
+      "000111",
+      "010",
+      "1111",
   ]
   for string in strings_list:
     print(nfa2dfa.run(string))
