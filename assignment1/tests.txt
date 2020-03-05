@@ -1,0 +1,25 @@
+s(T, [the,girl,boy,pushed,a,box,in,the,room], []).
+s(T, [the,boy,pushed,pushed,a,box,in,the,room], []).
+s(T, [the,boy,pushed,a,the,box,in,the,room], []). <====
+s(T, [the,boy,pushed,a,box,in,in,the,room], []). <===
+s(T, [pushed,the,boy,a,box], []).
+s(T, [the,girl], []).
+s(T, [the,girl,the,boy,pushed,a,box], []).
+s(T, [the,girl,pushed,a,box,and], []).
+s(T, [and,pushed,a,box], []).
+s(T, [while,pushed,a,box], []).
+s(T, [who,the,boy,gave,the,girl,stored,a,tree], []).
+s(T, [the,boy,gave,the,girl,stored,a,tree,who], []).
+s(T, [the,boy,gave,the,who,girl,stored,a,tree], []).
+s(T, [the,boy,gave,the,girl,stored,a,who,tree], []).
+s(T, [the,boy,who,stored], []).
+s(T, [the,boy,whom,stored,the,box], []). <===
+s(T, [the,boy,whom,stored,the,tree,watched], []).
+s(T, [the,boy,who,they,liked,stored,a,tree], []).
+s(T, [the,boy,while,the,girl,pushed,a,box], []). <===
+s(T, [the,boy,pushed,while,stored,a,box], []). <===
+s(T, [the,boy,pushed,a,box,the,girl,pushed,a,box], []). <===
+s(T, [the,boy,young,pushed,a,box], []).
+s(T, [the,poor,quickly,boy,pushed,a,box], []).
+s(T, [the,boy,gave,the,girl,a,white,envelope,a,big,tree], []). <==
+s(T, [the,boy,pushed,the,box,in,the,room,stored,a,tree], []). <===
