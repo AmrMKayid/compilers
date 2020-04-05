@@ -74,37 +74,37 @@ class FDFA:
 
 
 if __name__ == '__main__':
-  print("\n\First FallBack DFA\n\n")
-  fdfa = FDFA("0,0,1,00;1,2,1,01;2,0,3,10;3,3,3,11#0,1,2")
-  print(fdfa.run("1011100"))
+  print("\n\nFirst FallBack DFA\n\n")
+  fdfa = FDFA("0,4,1,000;1,1,2,001;2,3,2,010;3,1,4,011;4,4,0,100#2,4")
+  # print(fdfa.run("1011100"))
 
   strings_list = [
-      "100",
+      "000",
       "101",
-      "110",
-      "10110",
-      "011",
+      "1110",
+      "11000",
+      "0110",
   ]
   for string in strings_list:
     print(fdfa.run(string))
 
   print("\n\nSecond FallBack DFA\n\n")
-  fdfa = FDFA("0,1,0,00;1,1,2,01;2,3,2,10;3,3,3,11#1,2")
+  fdfa = FDFA("0,1,1,000;1,4,2,001;2,2,3,010;3,4,0,011;4,2,4,100#4")
 
   strings_list = [
-      "011",
-      "110",
-      "00101",
-      "100100",
-      "100",
+      "0101",
+      "1001",
+      "0011",
+      "11100",
+      "00",
   ]
   for string in strings_list:
     print(fdfa.run(string))
 
-  # strings_list = [
-  #     ''.join(random.choice("01")
-  #             for i in range(random.randint(1, 10)))
-  #     for j in range(10)
-  # ]
-  # for string in strings_list:
-  #   print(fdfa.run(string))
+  strings_list = [
+      ''.join(random.choice("01")
+              for i in range(random.randint(1, 10)))
+      for j in range(10)
+  ]
+  for string in strings_list:
+    print(fdfa.run(string))
